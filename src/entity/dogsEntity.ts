@@ -24,4 +24,22 @@ export class Dog extends Model {
     defaultValue: true,
   })
   isGoodBoy!: boolean;
+
+  @Column({
+    type: DataType.BIGINT,
+    allowNull: false,
+  })
+  createdTime: bigint;
+
+  @Column({
+    type: DataType.BIGINT,
+    allowNull: true,
+  })
+  updatedTime: bigint;
+
+  @Column({
+    type: DataType.BIGINT,
+    allowNull: true,
+  })
+  deletedTime: bigint;
 }
