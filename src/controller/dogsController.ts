@@ -53,7 +53,7 @@ const deleteDogs = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     try {
         const deletedDog: Dog | null = await Dog.findByPk(id);
-        await Dog.update({deletedTime: Date.now()}, {where: {id}});
+        await Dog.update({deletedAt: Date.now()}, {where: {id}});
         return res.status(200).json(deletedDog);
     } catch (e: any) {
         return res.status(500).json({'error': e.message});
