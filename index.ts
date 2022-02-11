@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const dogRouter = require('./src/routes/dogRoute');
 
 const app = express()
-
+require('dotenv').config();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get("/", (req: Request, res: Response): Response => {
   return res.json({ message: "Sequelize Example 🤟" });
 });
-
 
 app.use('/dogs', dogRouter);
 
