@@ -9,8 +9,10 @@ const connection = new Sequelize({
     username: "root",
     password: "",
     database: "portfolio",
-    logging: false,
+    logging: true,
     models: [Dog],
 });
+
+connection.sync({alter: true});
 
 export default connection;
