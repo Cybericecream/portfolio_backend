@@ -2,7 +2,9 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript";
 
 @Table({
-  timestamps: false,
+  timestamps: true,
+  paranoid: true,
+  freezeTableName:true,
   tableName: "dogs",
 })
 export class Dog extends Model {
@@ -24,22 +26,4 @@ export class Dog extends Model {
     defaultValue: true,
   })
   isGoodBoy!: boolean;
-
-  @Column({
-    type: DataType.BIGINT,
-    allowNull: false,
-  })
-  createdTime: bigint;
-
-  @Column({
-    type: DataType.BIGINT,
-    allowNull: true,
-  })
-  updatedTime: bigint;
-
-  @Column({
-    type: DataType.BIGINT,
-    allowNull: true,
-  })
-  deletedTime: bigint;
 }

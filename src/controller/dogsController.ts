@@ -4,10 +4,10 @@ import {Dog} from "../entity/dogsEntity";
 const listDogs = async (req: Request, res: Response): Promise<Response> => {
     const allDogs: Dog[] = await Dog.findAll({
         where: {
-            deletedTime: null
+            deletedAt: null
         }
     });
-    return res.status(200).json([allDogs]);
+    return res.status(200).json(allDogs);
 }
 
 const viewDogs = async (req: Request, res: Response): Promise<Response> => {
@@ -21,9 +21,7 @@ const saveDogs = async (req: Request, res: Response) => {
         const dog: Dog = await Dog.create({
             name: req.body.name,
             breed: req.body.breed,
-            isGoodBoy: req.body.isGoodBoy,
-            createdTime: Date.now(),
-            updatedTime: Date.now()
+            isGoodBoy: req.body.isGoodBoy
         });
         return res.status(201).json(dog);
     } catch (e: any) {
@@ -42,8 +40,7 @@ const editDogs = async (req: Request, res: Response): Promise<Response> => {
         await Dog.update({
             name: req.body.name,
             breed: req.body.breed,
-            isGoodBoy: req.body.isGoodBoy,
-            updatedTime: Date.now()
+            isGoodBoy: req.body.isGoodBoy
         }, {where: {id}});
         const updatedDog: Dog | null = await Dog.findByPk(id);
         return res.status(200).json(updatedDog);
